@@ -132,7 +132,7 @@ export default function Navbar() {
                             </p>
 
                             <Button>
-                                <Link href={user.role === "hospital" ? "/dashboard/hospital" : "/dashboard/donor"}>
+                                <Link href={user.role === "hospital" ? "/hospital/dashboard" : "/donor/dashboard"}>
                                     Dashboard
                                 </Link>
                             </Button>
