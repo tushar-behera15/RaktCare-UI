@@ -50,6 +50,20 @@ function VerifyOtpContent() {
                 res.data?.message || "OTP verified successfully!"
             );
 
+            const registration = JSON.parse(
+                sessionStorage.getItem("pendingRegistration") || "{}"
+            );
+
+            console.log(registration);
+
+            if (registration.role === "hospital") {
+                await axios.post("http://localhost:5000/hospital/create-profile", registration.profileData, {
+                    withCredentials: true,
+                });
+            }
+
+            sessionStorage.removeItem("pendingRegistration");
+
             router.push("/auth/login");
         } catch (error: any) {
             toast.error(

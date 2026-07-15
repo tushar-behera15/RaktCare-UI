@@ -157,18 +157,22 @@ export function HospitalSignupForm({ onBack }: HospitalSignupFormProps) {
         password: finalData.password
       }
 
-
+      console.log(hospitalData);
       await axios.post("http://localhost:5000/auth/signup", signupData, {
         withCredentials: true,
       });
-      setPendingHospitalData(hospitalData);
+      sessionStorage.setItem(
+        "pendingRegistration",
+        JSON.stringify({
+          role: "hospital",
+          profileData: hospitalData,
+        })
+      );
       console.log("pendingDonorData", pendingHospitalData);
 
       router.push(`/auth/verify-otp?email=${encodeURIComponent(finalData.email ?? "")}`);
 
-      await axios.post("http://localhost:5000/hospital/create-profile", hospitalData, {
-        withCredentials: true,
-      });
+
 
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Signup failed");

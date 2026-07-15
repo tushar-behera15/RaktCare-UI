@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "./(dashboards)/donor/_components/dashboard-stuffs/theme-provider";
 
 const geistHeading = Geist({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -33,10 +34,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable, geistHeading.variable)}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <Toaster position="top-center" richColors />
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Toaster position="top-center" richColors />
+          {children}
+        </ThemeProvider>
 
       </body>
     </html>
