@@ -65,7 +65,7 @@ export default function RecipientStats({
                 return (
                     <Card key={item.title}>
 
-                        <CardContent className="flex items-center justify-between p-6">
+                        <CardContent className="flex items-center justify-between">
 
                             <div>
 

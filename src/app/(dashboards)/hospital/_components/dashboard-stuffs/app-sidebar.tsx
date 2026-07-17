@@ -14,7 +14,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import Link from "next/link"
-import { IconBox, IconDroplet, IconUser, IconUserCheck } from "@tabler/icons-react"
+import { IconCalendar, IconDroplet, IconStack2, IconUser, IconUsersGroup } from "@tabler/icons-react"
 
 const data = {
   user: {
@@ -31,17 +31,17 @@ const data = {
     {
       title: "Patients",
       url: "/hospital/dashboard/patients",
-      icon: IconUserCheck,
+      icon: IconUsersGroup,
     },
     {
       title: "Blood Stock",
       url: "/hospital/dashboard/blood-stock",
-      icon: IconBox,
+      icon: IconStack2,
     },
     {
       title: "Appointments",
       url: "/hospital/dashboard/appointments",
-      icon: IconBox,
+      icon: IconCalendar,
     },
   ],
 }

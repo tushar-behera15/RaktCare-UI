@@ -9,7 +9,8 @@ export interface Recipient {
     urgency: "high" | "medium" | "low";
     diseases: string[];
     status: "pending" | "completed";
-
+    createdAt: string;
+    updatedAt: string;
     assignedDonorId?: {
         _id: string;
         userId: {

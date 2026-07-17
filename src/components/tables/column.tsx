@@ -4,11 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import {
     ArrowUpDown,
-    MoreHorizontal,
     Eye,
     Pencil,
-    UserSearch,
-    CheckCircle2,
     Trash2,
 } from "lucide-react";
 
@@ -18,269 +15,234 @@ import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button";
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
 import { Recipient } from "@/types/Recipient";
+import Link from "next/link";
 
-export const columns: ColumnDef<Recipient>[] = [
+export const getColumns = ({
+    onUpdate,
+    onDelete
+}: {
+    onUpdate: (recipient: Recipient) => void;
+    onDelete: (recipient: Recipient) => void;
+}): ColumnDef<Recipient>[] => [
 
-    // Checkbox
+        // Checkbox
 
-    {
-        id: "select",
+        {
+            id: "select",
 
-        header: ({ table }) => (
+            header: ({ table }) => (
 
-            <Checkbox
+                <Checkbox
 
-                checked={table.getIsAllPageRowsSelected()}
+                    checked={table.getIsAllPageRowsSelected()}
 
-                onCheckedChange={(value) =>
-                    table.toggleAllPageRowsSelected(!!value)
-                }
-
-            />
-
-        ),
-
-        cell: ({ row }) => (
-
-            <Checkbox
-
-                checked={row.getIsSelected()}
-
-                onCheckedChange={(value) =>
-                    row.toggleSelected(!!value)
-                }
-
-            />
-
-        ),
-
-        enableSorting: false,
-    },
-
-    // Patient
-
-    {
-        accessorKey: "patientName",
-
-        header: ({ column }) => (
-
-            <Button
-                variant="ghost"
-                onClick={() =>
-                    column.toggleSorting(
-                        column.getIsSorted() === "asc"
-                    )
-                }
-            >
-                Patient
-
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-
-            </Button>
-
-        ),
-
-        cell: ({ row }) => (
-
-            <div className="font-medium">
-
-                {row.original.patientName}
-
-            </div>
-
-        ),
-    },
-
-    // Blood Group
-
-    {
-        accessorKey: "bloodGroup",
-
-        header: "Blood",
-
-        cell: ({ row }) => (
-
-            <Badge>
-
-                🩸 {row.original.bloodGroup}
-
-            </Badge>
-
-        ),
-    },
-
-    // Units
-
-    {
-        accessorKey: "unitNeeded",
-
-        header: "Units",
-
-        cell: ({ row }) => row.original.unitNeeded,
-    },
-
-    // Urgency
-
-    {
-        accessorKey: "urgency",
-
-        header: "Urgency",
-
-        cell: ({ row }) => {
-
-            const urgency = row.original.urgency;
-
-            return (
-
-                <Badge
-
-                    variant={
-                        urgency === "high"
-                            ? "destructive"
-                            : urgency === "medium"
-                                ? "secondary"
-                                : "default"
+                    onCheckedChange={(value) =>
+                        table.toggleAllPageRowsSelected(!!value)
                     }
 
-                >
+                />
 
-                    {urgency}
+            ),
+
+            cell: ({ row }) => (
+
+                <Checkbox
+
+                    checked={row.getIsSelected()}
+
+                    onCheckedChange={(value) =>
+                        row.toggleSelected(!!value)
+                    }
+
+                />
+
+            ),
+
+            enableSorting: false,
+        },
+
+        // Patient
+
+        {
+            accessorKey: "patientName",
+
+            header: ({ column }) => (
+
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(
+                            column.getIsSorted() === "asc"
+                        )
+                    }
+                >
+                    Patient
+
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+
+                </Button>
+
+            ),
+
+            cell: ({ row }) => (
+
+                <div className="font-medium">
+
+                    {row.original.patientName}
+
+                </div>
+
+            ),
+        },
+
+        // Blood Group
+
+        {
+            accessorKey: "bloodGroup",
+
+            header: "Blood",
+
+            cell: ({ row }) => (
+
+                <Badge>
+
+                    🩸 {row.original.bloodGroup}
 
                 </Badge>
 
-            );
-
+            ),
         },
-    },
 
-    // Status
+        // Units
 
-    {
-        accessorKey: "status",
+        {
+            accessorKey: "unitNeeded",
 
-        header: "Status",
+            header: "Units",
 
-        cell: ({ row }) => (
+            cell: ({ row }) => row.original.unitNeeded,
+        },
 
-            <Badge
-                variant={
-                    row.original.status === "completed"
-                        ? "default"
-                        : "secondary"
-                }
-            >
+        // Urgency
 
-                {row.original.status}
+        {
+            accessorKey: "urgency",
 
-            </Badge>
+            header: "Urgency",
 
-        ),
-    },
+            cell: ({ row }) => {
 
-    // Assigned Donor
+                const urgency = row.original.urgency;
 
-    {
-        accessorKey: "assignedDonorId",
+                return (
 
-        header: "Assigned Donor",
+                    <Badge
 
-        cell: ({ row }) => {
-            const donor = row.original.assignedDonorId;
+                        variant={
+                            urgency === "high"
+                                ? "destructive"
+                                : urgency === "medium"
+                                    ? "secondary"
+                                    : "default"
+                        }
 
-            return donor ? (
-                donor.userId.fullName
-            ) : (
-                <span className="text-muted-foreground">
-                    Not Assigned
-                </span>
-            );
-        }
-    },
+                    >
 
-    // Actions
+                        {urgency}
 
-    {
-        id: "actions",
+                    </Badge>
 
-        cell: ({ row }) => {
+                );
 
+            },
+        },
 
-            return (
+        // Status
 
-                <DropdownMenu>
+        {
+            accessorKey: "status",
 
-                    <DropdownMenuTrigger>
+            header: "Status",
+
+            cell: ({ row }) => (
+
+                <Badge
+                    variant={
+                        row.original.status === "completed"
+                            ? "default"
+                            : "secondary"
+                    }
+                >
+
+                    {row.original.status}
+
+                </Badge>
+
+            ),
+        },
+
+        // Assigned Donor
+
+        {
+            accessorKey: "assignedDonorId",
+
+            header: "Assigned Donor",
+
+            cell: ({ row }) => {
+                const donor = row.original.assignedDonorId;
+
+                return donor ? (
+                    donor.userId.fullName
+                ) : (
+                    <span className="text-muted-foreground">
+                        Not Assigned
+                    </span>
+                );
+            }
+        },
+
+        // Actions
+
+        {
+
+            header: "Actions",
+            id: "actions",
+
+            cell: ({ row }) => {
+
+                return (
+                    <div className="flex gap-2">
 
                         <Button
-                            variant="ghost"
-                            size="icon"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => onUpdate(row.original)}
                         >
-
-                            <MoreHorizontal className="h-4 w-4" />
-
+                            <Pencil className="h-4 w-4" />
                         </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
 
-                    </DropdownMenuTrigger>
-
-                    <DropdownMenuContent align="end">
-
-                        <DropdownMenuItem>
-
-                            <Eye className="mr-2 h-4 w-4" />
-
-                            View Details
-
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-
-                            <Pencil className="mr-2 h-4 w-4" />
-
-                            Edit Recipient
-
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-
-                            <UserSearch className="mr-2 h-4 w-4" />
-
-                            Find Matching Donors
-
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-
-                            <CheckCircle2 className="mr-2 h-4 w-4" />
-
-                            Confirm Donation
-
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem
-                            className="text-red-600"
                         >
+                            <Link href={`/hospital/dashboard/patients/${row.original._id}`}>
+                                <Eye className="h-4 w-4" />
+                            </Link>
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => onDelete(row.original)}
+                        >
+                            <Trash2 className="h-4 w-4" />
+                        </Button>
+                    </div>
 
-                            <Trash2 className="mr-2 h-4 w-4" />
 
-                            Delete
+                );
 
-                        </DropdownMenuItem>
-
-                    </DropdownMenuContent>
-
-                </DropdownMenu>
-
-            );
-
+            },
         },
-    },
 
-];
+    ];
