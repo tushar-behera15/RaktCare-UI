@@ -12,7 +12,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 
 interface AppointmentFiltersProps {
     search: string;
@@ -31,7 +30,6 @@ export default function AppointmentFilters({
     onStatusChange,
     onReset,
 }: AppointmentFiltersProps) {
-    const [value, setValue] = useState("all");
     return (
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
 
@@ -55,7 +53,7 @@ export default function AppointmentFilters({
                 value={status}
                 onValueChange={(value) => {
                     console.log("Selected:", value);
-                    setValue(value ?? "");
+                    onStatusChange(value ?? "");
                 }}
             >
 

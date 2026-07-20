@@ -5,6 +5,8 @@ import axios from 'axios';
 import AppointmentStats from '../../_components/appointments/AppointmentStats';
 import { Appointment } from '@/lib/validators/Appointment';
 import AppointmentFilters from '../../_components/appointments/AppointmentFilters';
+import { getColumns } from '../../_components/appointments/columns';
+import AppointmentTable from '../../_components/appointments/data-table';
 
 const AppointmentPage = () => {
     const [loading, setLoading] = useState(false);
@@ -54,6 +56,16 @@ const AppointmentPage = () => {
                 status={status}
                 onStatusChange={setStatus}
                 onReset={handleReset}
+            />
+
+            <AppointmentTable
+                columns={getColumns({
+                    onStatusUpdate: (appointment: Appointment) => {
+                        console.log(appointment);
+
+                    },
+                })}
+                data={appointments}
             />
         </div>
 
