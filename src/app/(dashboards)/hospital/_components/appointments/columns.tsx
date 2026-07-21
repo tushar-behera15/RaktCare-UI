@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { Eye, Pencil } from "lucide-react";
+import { Eye } from "lucide-react";
 
 
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Appointment } from "@/lib/validators/Appointment";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox";
+import StatusBadge from "./status/StatusBadge";
 
 interface ColumnProps {
     onStatusUpdate: (
@@ -19,7 +20,6 @@ interface ColumnProps {
 }
 
 export const getColumns = ({
-    onStatusUpdate,
 }: ColumnProps): ColumnDef<Appointment>[] => [
         {
             id: "select",
@@ -94,9 +94,8 @@ export const getColumns = ({
             accessorKey: "status",
             header: "Status",
             cell: ({ row }) => (
-                <Badge>
-                    {row.original.status}
-                </Badge>
+                <StatusBadge status={row.original.status} />
+
             ),
         },
 
@@ -116,16 +115,6 @@ export const getColumns = ({
 
             cell: ({ row }) => (
                 <div className="flex items-center gap-2">
-
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => {
-                            onStatusUpdate(row.original, row.original.status);
-                        }}
-                    >
-                        <Pencil className="h-4 w-4" />
-                    </Button>
 
                     <Button
                         variant="outline"

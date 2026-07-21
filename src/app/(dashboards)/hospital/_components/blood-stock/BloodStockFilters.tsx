@@ -55,7 +55,9 @@ export default function BloodStockFilters({
 
                 <Select
                     value={status}
-                    onValueChange={() => onStatusChange}
+                    onValueChange={(value) => {
+                        onStatusChange(value ?? "");
+                    }}
                 >
                     <SelectTrigger className="w-full md:w-55">
                         <SelectValue placeholder="Stock Status" />

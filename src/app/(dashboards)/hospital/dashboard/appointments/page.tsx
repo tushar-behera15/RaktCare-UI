@@ -7,6 +7,7 @@ import { Appointment } from '@/lib/validators/Appointment';
 import AppointmentFilters from '../../_components/appointments/AppointmentFilters';
 import { getColumns } from '../../_components/appointments/columns';
 import AppointmentTable from '../../_components/appointments/data-table';
+import UpdateAppointmentStatusDialog from '../../_components/appointments/AppointmentUpdateStatus';
 
 const AppointmentPage = () => {
     const [loading, setLoading] = useState(false);
@@ -14,6 +15,14 @@ const AppointmentPage = () => {
     const [search, setSearch] = useState("");
 
     const [status, setStatus] = useState("all");
+    const [selectedAppointment, setSelectedAppointment] =
+        useState<Appointment | null>(null);
+
+    const [statusDialogOpen, setStatusDialogOpen] =
+        useState(false);
+
+    const [nextStatus, setNextStatus] =
+        useState<Appointment["status"]>("pending");
 
     const fetchAppointments = async () => {
         try {
@@ -60,12 +69,22 @@ const AppointmentPage = () => {
 
             <AppointmentTable
                 columns={getColumns({
-                    onStatusUpdate: (appointment: Appointment) => {
-                        console.log(appointment);
 
+                    onStatusUpdate: (appointment, status) => {
+                        setSelectedAppointment(appointment);
+                        setNextStatus(status);
+                        setStatusDialogOpen(true);
                     },
                 })}
                 data={appointments}
+            />
+
+            <UpdateAppointmentStatusDialog
+                open={statusDialogOpen}
+                onOpenChange={setStatusDialogOpen}
+                appointment={selectedAppointment}
+                nextStatus={nextStatus}
+                onSuccess={fetchAppointments}
             />
         </div>
 
