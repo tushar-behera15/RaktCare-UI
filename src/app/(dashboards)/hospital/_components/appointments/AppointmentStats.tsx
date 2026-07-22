@@ -54,12 +54,12 @@ export default function AppointmentStats({
     ];
 
     return (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 ">
             {stats.map((stat) => {
                 const Icon = stat.icon;
 
                 return (
-                    <Card key={stat.title}>
+                    <Card key={stat.title} className="bg-card shadow-sm">
                         <CardContent className="flex items-center justify-between">
 
                             <div>

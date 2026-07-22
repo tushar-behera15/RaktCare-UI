@@ -32,8 +32,8 @@ export default function HospitalOverview({
 }: HospitalOverviewProps) {
 
     return (
-        <Card>
-            <CardContent className="p-6">
+        <Card className="shadow-sm bg-card">
+            <CardContent className="p-3">
 
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
@@ -87,7 +87,7 @@ export default function HospitalOverview({
 
                     </div>
 
-                    <div className="rounded-xl border bg-muted/30 p-5">
+                    <div className="rounded-xl bg-background/40 p-5">
 
                         <p className="text-sm text-muted-foreground">
                             Registration Number

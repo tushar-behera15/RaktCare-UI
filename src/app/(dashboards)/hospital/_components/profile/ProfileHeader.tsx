@@ -12,7 +12,7 @@ export default function ProfileHeader({
     onEdit,
 }: ProfileHeaderProps) {
     return (
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm md:flex-row md:items-center md:justify-between">
 
             <div className="space-y-1">
 

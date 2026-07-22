@@ -29,7 +29,7 @@ export default function AddressCard({
     hospital,
 }: Props) {
     return (
-        <Card className="h-full">
+        <Card className="h-full bg-card shadow-sm">
 
             <CardHeader>
 
@@ -45,9 +45,9 @@ export default function AddressCard({
 
             <CardContent className="space-y-5">
 
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3 bg-background/40 shadow-sm p-4 rounded-lg">
 
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
 
                         <MapPin className="h-5 w-5 text-primary" />
 
@@ -69,7 +69,7 @@ export default function AddressCard({
 
                 <div className="grid grid-cols-2 gap-4">
 
-                    <div className="rounded-lg border p-4">
+                    <div className="rounded-lg bg-background/40 shadow-sm p-4">
 
                         <div className="flex items-center gap-2 mb-2">
 
@@ -87,7 +87,7 @@ export default function AddressCard({
 
                     </div>
 
-                    <div className="rounded-lg border p-4">
+                    <div className="rounded-lg bg-background/40 shadow-sm p-4">
 
                         <div className="flex items-center gap-2 mb-2">
 
@@ -107,7 +107,7 @@ export default function AddressCard({
 
                 </div>
 
-                <div className="rounded-lg border p-4">
+                <Card className="rounded-lg bg-background/40 shadow-sm p-4">
 
                     <p className="text-sm text-muted-foreground">
                         Pincode
@@ -117,7 +117,7 @@ export default function AddressCard({
                         {hospital?.pincode}
                     </p>
 
-                </div>
+                </Card>
 
             </CardContent>
 

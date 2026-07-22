@@ -28,7 +28,7 @@ export default function AccountInfoCard({
     user,
 }: Props) {
     return (
-        <Card>
+        <Card className="bg-card shadow-sm">
 
             <CardHeader>
 
@@ -48,7 +48,7 @@ export default function AccountInfoCard({
 
                     {/* Email */}
 
-                    <div className="rounded-xl border p-3 bg-muted/20 md:col-span-2">
+                    <div className="rounded-xl bg-background/40 p-3 md:col-span-2">
                         <div className="flex items-center gap-3">
 
                             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -71,7 +71,7 @@ export default function AccountInfoCard({
 
                     {/* Created Date */}
 
-                    <div className="rounded-xl border bg-muted/20 p-3 md:col-span-2">
+                    <div className="rounded-xl bg-background/40  p-3 md:col-span-2">
 
                         <div className="flex items-center gap-3">
 

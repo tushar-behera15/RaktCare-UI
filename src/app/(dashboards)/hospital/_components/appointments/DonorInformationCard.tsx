@@ -43,7 +43,7 @@ export default function DonorInformationCard({
         .toUpperCase() || "D";
 
     return (
-        <Card>
+        <Card className="bg-card shadow-sm">
             <CardHeader>
                 <CardTitle>Donor Information</CardTitle>
             </CardHeader>
@@ -51,7 +51,7 @@ export default function DonorInformationCard({
             <CardContent className="space-y-6">
                 {/* Profile */}
                 <div className="flex items-center gap-4">
-                    <Avatar className="h-16 w-16">
+                    <Avatar className="h-12 w-12">
                         <AvatarFallback className="text-lg font-semibold">
                             {initials}
                         </AvatarFallback>

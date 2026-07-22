@@ -7,40 +7,47 @@ import {
     Hash,
     CalendarPlus,
     Droplets,
+    ChevronLeft,
+    Calendar1Icon,
 } from "lucide-react";
 
 import { Appointment } from "@/lib/validators/Appointment";
 
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 interface AppointmentOverviewCardProps {
     appointment: Appointment;
 }
 
-const STATUS_COLORS = {
+export const STATUS_COLORS = {
     pending:
-        "bg-yellow-100 text-yellow-800 border-yellow-200",
+        "border-yellow-200 bg-yellow-100 text-yellow-800 dark:border-yellow-800 dark:bg-yellow-950/40 dark:text-yellow-300",
+
     approved:
-        "bg-blue-100 text-blue-800 border-blue-200",
+        "border-blue-200 bg-blue-100 text-blue-800 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300",
+
     completed:
-        "bg-green-100 text-green-800 border-green-200",
+        "border-green-200 bg-green-100 text-green-800 dark:border-green-800 dark:bg-green-950/40 dark:text-green-300",
+
     rejected:
-        "bg-red-100 text-red-800 border-red-200",
+        "border-red-200 bg-red-100 text-red-800 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300",
+
     cancelled:
-        "bg-gray-100 text-gray-800 border-gray-200",
-};
+        "border-gray-200 bg-gray-100 text-gray-800 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300",
+} as const;
 
 export default function AppointmentOverviewCard({
     appointment,
 }: AppointmentOverviewCardProps) {
     return (
-        <div className="flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm md:flex-row md:items-center md:justify-between">
 
             <div className="flex flex-col gap-4 w-full">
-
+                <Link href="/hospital/dashboard/appointments" className="text-muted-foreground flex gap-2 hover:text-primary w-fit"><ChevronLeft />Back to appointments</Link >
                 <div className="flex items-center gap-2">
 
-                    <Droplets className="h-6 w-6 text-red-500" />
+                    <Calendar1Icon className="h-6 w-6 text-red-500" />
 
                     <h1 className="text-2xl font-bold tracking-tight">
                         Appointment Overview
@@ -48,7 +55,7 @@ export default function AppointmentOverviewCard({
 
                 </div>
 
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                     Monitor and manage Appointment Overview
                 </p>
                 <div className="flex justify-between">

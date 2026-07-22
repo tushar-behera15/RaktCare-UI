@@ -30,7 +30,7 @@ export default function AppointmentSummaryCard({
 
     return (
         <>
-            <Card>
+            <Card className="bg-card">
                 <CardContent className="space-y-6 p-6">
 
                     {/* Donor Details */}

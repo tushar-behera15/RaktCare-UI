@@ -12,33 +12,25 @@ export default function RecipientHeader({
     onCreate,
 }: RecipientHeaderProps) {
     return (
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm md:flex-row md:items-center md:justify-between">
 
             {/* Left */}
 
-            <div className="space-y-1">
+            <div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
 
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <UserRoundPlus className="h-6 w-6 text-primary" />
 
-                        <UserRoundPlus className="h-6 w-6 text-primary" />
-
-                    </div>
-
-                    <div>
-
-                        <h1 className="text-2xl font-bold tracking-tight">
-                            Recipients
-                        </h1>
-
-                        <p className="text-muted-foreground">
-                            Manage blood recipients and monitor blood requests.
-                        </p>
-
-                    </div>
+                    <h1 className="text-2xl font-bold tracking-tight">
+                        Recipients
+                    </h1>
 
                 </div>
+
+                <p className="mt-2 text-sm text-muted-foreground">
+                    Monitor and manage blood recipients and monitor blood requests.
+                </p>
 
             </div>
 

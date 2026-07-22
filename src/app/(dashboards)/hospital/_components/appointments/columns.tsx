@@ -11,6 +11,7 @@ import { Appointment } from "@/lib/validators/Appointment";
 import Link from "next/link";
 import { Checkbox } from "@/components/ui/checkbox";
 import StatusBadge from "./status/StatusBadge";
+import { STATUS_COLORS } from "./AppointmentOverviewCard";
 
 interface ColumnProps {
     onStatusUpdate: (
@@ -94,7 +95,9 @@ export const getColumns = ({
             accessorKey: "status",
             header: "Status",
             cell: ({ row }) => (
-                <StatusBadge status={row.original.status} />
+                <Badge variant="outline" className={STATUS_COLORS[row.original.status]}>
+                    {row.original.status}
+                </Badge>
 
             ),
         },

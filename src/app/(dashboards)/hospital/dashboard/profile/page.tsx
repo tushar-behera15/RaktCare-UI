@@ -60,7 +60,7 @@ export default function ProfilePage() {
     }, [])
 
     return (
-        <div className="space-y-8 p-6">
+        <div className="space-y-6 p-3">
 
             <ProfileHeader />
             <HospitalOverview

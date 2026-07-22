@@ -63,7 +63,7 @@ export default function RecipientStats({
                 const Icon = item.icon;
 
                 return (
-                    <Card key={item.title}>
+                    <Card key={item.title} className="bg-card shadow-sm">
 
                         <CardContent className="flex items-center justify-between">
 
@@ -80,10 +80,10 @@ export default function RecipientStats({
                             </div>
 
                             <div
-                                className={`flex h-14 w-14 items-center justify-center rounded-xl ${item.iconBg}`}
+                                className={`rounded-full p-3 ${item.iconBg}`}
                             >
                                 <Icon
-                                    className={`h-7 w-7 ${item.iconColor}`}
+                                    className={`h-6 w-6 ${item.iconColor}`}
                                 />
                             </div>
 

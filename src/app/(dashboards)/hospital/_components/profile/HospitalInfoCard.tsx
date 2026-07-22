@@ -52,7 +52,7 @@ export default function HospitalInfoCard({
     ];
 
     return (
-        <Card>
+        <Card className="bg-card shadow-sm">
 
             <CardHeader>
 
@@ -76,7 +76,7 @@ export default function HospitalInfoCard({
                         return (
                             <div
                                 key={item.label}
-                                className="rounded-xl border bg-muted/20 p-4"
+                                className="rounded-xl bg-background/40 shadow-sm p-4"
                             >
 
                                 <div className="flex items-center gap-3">

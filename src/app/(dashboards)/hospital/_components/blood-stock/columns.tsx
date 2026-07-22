@@ -4,7 +4,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import {
     ArrowUpDown,
     Pencil,
-    Droplets,
 } from "lucide-react";
 
 import { BloodStock } from "@/types/BloodStock";
@@ -16,10 +15,21 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface ColumnProps {
     onUpdate: (stock: BloodStock) => void;
 }
+export const STOCK_BADGE_COLORS = {
+    available:
+        "border-green-200 bg-green-100 text-green-700 hover:bg-green-200 dark:border-green-800 dark:bg-green-950/40 dark:text-green-300 dark:hover:bg-green-900/60",
+
+    low:
+        "border-orange-200 bg-orange-100 text-orange-700 hover:bg-orange-200 dark:border-orange-800 dark:bg-orange-950/40 dark:text-orange-300 dark:hover:bg-orange-900/60",
+
+    critical:
+        "border-red-200 bg-red-100 text-red-700 hover:bg-red-200 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300 dark:hover:bg-red-900/60",
+} as const;
 
 export function getColumns({
     onUpdate,
 }: ColumnProps): ColumnDef<BloodStock>[] {
+
     return [
         {
             id: "select",
@@ -75,7 +85,6 @@ export function getColumns({
 
             cell: ({ row }) => (
                 <div className="flex items-center gap-2 font-semibold">
-                    <Droplets className="h-4 w-4 text-red-500" />
                     {row.original.bloodGroup}
                 </div>
             ),
@@ -144,8 +153,7 @@ export function getColumns({
                 if (units <= 5) {
                     return (
                         <Badge
-                            variant="secondary"
-                            className="bg-orange-100 text-orange-700"
+                            className={STOCK_BADGE_COLORS.low}
                         >
                             Low Stock
                         </Badge>
@@ -153,7 +161,7 @@ export function getColumns({
                 }
 
                 return (
-                    <Badge className="bg-green-600 hover:bg-green-700">
+                    <Badge className={STOCK_BADGE_COLORS.available}>
                         Available
                     </Badge>
                 );

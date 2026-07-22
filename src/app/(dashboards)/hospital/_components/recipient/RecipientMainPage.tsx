@@ -91,7 +91,7 @@ export default function RecipientPage() {
     }
 
     return (
-        <div className="space-y-6 p-6">
+        <div className="space-y-6 p-3">
 
             <RecipientHeader
                 onCreate={() => setOpenCreateDialog(true)}
@@ -103,23 +103,23 @@ export default function RecipientPage() {
                 completed={completed}
                 highUrgency={highUrgency}
             />
-
             {/* <RecipientFilters /> */}
+
+            <div>
+                <RecipientFilters
+                    search={search}
+                    bloodGroup={bloodGroup as string}
+                    urgency={urgency as string}
+                    status={status as string}
+                    onSearchChange={setSearch}
+                    onBloodGroupChange={setBloodGroup}
+                    onUrgencyChange={setUrgency}
+                    onStatusChange={setStatus}
+                    onReset={handleReset}
+                />
+            </div>
             <div className="rounded-xl border bg-card">
 
-                <div className="border-b p-3">
-                    <RecipientFilters
-                        search={search}
-                        bloodGroup={bloodGroup as string}
-                        urgency={urgency as string}
-                        status={status as string}
-                        onSearchChange={setSearch}
-                        onBloodGroupChange={setBloodGroup}
-                        onUrgencyChange={setUrgency}
-                        onStatusChange={setStatus}
-                        onReset={handleReset}
-                    />
-                </div>
 
                 <DataTable
                     columns={getColumns({

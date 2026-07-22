@@ -33,7 +33,7 @@ export interface Donor {
 
 export interface Hospital {
     _id: string;
-    name: string;
+    hospitalName: string;
     address: string;
     contactNo: string;
 }

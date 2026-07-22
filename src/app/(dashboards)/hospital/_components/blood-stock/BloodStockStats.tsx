@@ -62,7 +62,7 @@ export default function BloodStockStats({
                 const Icon = stat.icon;
 
                 return (
-                    <Card key={stat.title}>
+                    <Card key={stat.title} className="bg-card shadow-sm">
                         <CardContent className="flex items-center justify-between">
 
                             <div>

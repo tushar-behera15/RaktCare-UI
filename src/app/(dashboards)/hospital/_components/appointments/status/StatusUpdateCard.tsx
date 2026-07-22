@@ -51,7 +51,7 @@ export default function StatusUpdateCard({
 
     if (!actions.length) {
         return (
-            <Card>
+            <Card className="bg-card shadow-sm">
                 <CardHeader>
                     <CardTitle>Status Management</CardTitle>
                 </CardHeader>
@@ -116,7 +116,7 @@ export default function StatusUpdateCard({
     };
 
     return (
-        <Card>
+        <Card className="bg-card shadow-sm">
             <CardHeader>
                 <CardTitle>Status Management</CardTitle>
             </CardHeader>

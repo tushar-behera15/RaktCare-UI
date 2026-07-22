@@ -8,6 +8,7 @@ import AppointmentFilters from '../../_components/appointments/AppointmentFilter
 import { getColumns } from '../../_components/appointments/columns';
 import AppointmentTable from '../../_components/appointments/data-table';
 import UpdateAppointmentStatusDialog from '../../_components/appointments/AppointmentUpdateStatus';
+import { Loader2 } from 'lucide-react';
 
 const AppointmentPage = () => {
     const [loading, setLoading] = useState(false);
@@ -47,6 +48,14 @@ const AppointmentPage = () => {
     useEffect(() => {
         fetchAppointments();
     }, [])
+
+    if (loading) {
+        return (
+            <div className="flex h-[70vh] items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+        );
+    }
     return (
         <div className='p-3 space-y-6'>
 
@@ -67,25 +76,28 @@ const AppointmentPage = () => {
                 onReset={handleReset}
             />
 
-            <AppointmentTable
-                columns={getColumns({
+            <div className='bg-card rounded-md shadow-sm'>
 
-                    onStatusUpdate: (appointment, status) => {
-                        setSelectedAppointment(appointment);
-                        setNextStatus(status);
-                        setStatusDialogOpen(true);
-                    },
-                })}
-                data={appointments}
-            />
+                <AppointmentTable
+                    columns={getColumns({
 
-            <UpdateAppointmentStatusDialog
-                open={statusDialogOpen}
-                onOpenChange={setStatusDialogOpen}
-                appointment={selectedAppointment}
-                nextStatus={nextStatus}
-                onSuccess={fetchAppointments}
-            />
+                        onStatusUpdate: (appointment, status) => {
+                            setSelectedAppointment(appointment);
+                            setNextStatus(status);
+                            setStatusDialogOpen(true);
+                        },
+                    })}
+                    data={appointments}
+                />
+
+                <UpdateAppointmentStatusDialog
+                    open={statusDialogOpen}
+                    onOpenChange={setStatusDialogOpen}
+                    appointment={selectedAppointment}
+                    nextStatus={nextStatus}
+                    onSuccess={fetchAppointments}
+                />
+            </div>
         </div>
 
     )

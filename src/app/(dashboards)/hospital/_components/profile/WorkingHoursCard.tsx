@@ -26,7 +26,7 @@ export default function WorkingHoursCard({
     hospital,
 }: Props) {
     return (
-        <Card className="h-full">
+        <Card className="h-full bg-card shadow-sm">
 
             <CardHeader>
 
@@ -42,7 +42,7 @@ export default function WorkingHoursCard({
 
             <CardContent className="space-y-6">
 
-                <div className="rounded-xl border p-5">
+                <div className="rounded-xl bg-background/40 p-5">
 
                     <div className="flex items-center gap-3">
 
@@ -68,7 +68,7 @@ export default function WorkingHoursCard({
 
                 </div>
 
-                <div className="rounded-xl border p-5">
+                <div className="rounded-xl bg-background/40 p-5">
 
                     <div className="flex items-center gap-3">
 
