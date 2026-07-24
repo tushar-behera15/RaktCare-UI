@@ -25,7 +25,7 @@ const data = {
   navMain: [
     {
       title: "Profile",
-      url: "/hospital/dashboard/profile",
+      url: "/donor/dashboard/profile",
       icon: IconUser,
     },
     {
